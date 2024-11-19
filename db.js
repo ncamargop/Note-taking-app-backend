@@ -1,21 +1,7 @@
-const mysql = require("mysql");
-require("dotenv").config();
+export const PORT = process.env.PORT;
 
-// DB Connection - TODO: edit for deploy
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.PORT,
-});
-
-connection.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err);
-  } else {
-    console.log("Connected to MySQL database");
-  }
-});
-
-module.exports = connection;
+export const DB_HOST = process.env.DB_HOST;
+export const DB_USER = process.env.DB_USER;
+export const DB_PASSWORD = process.env.DB_PASSWORD;
+export const DB_NAME = process.env.DB_NAME;
+export const DB_PORT = process.env.DB_PORT;

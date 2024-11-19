@@ -1,20 +1,20 @@
-import { connection } from "db.js";
-
-const express = require("express");
+import express from "express";
 const app = express();
-const mysql = require("mysql2");
-const cors = require("cors");
+import mysql from "mysql2";
+import cors from "cors";
+import { pool } from "./config.js";
+import { PORT } from "./db.js";
 
 app.use(cors());
 app.use(express.json()); // Parsing for JSON bodies
 
 // Set up MySQL connection
 const db = mysql.createConnection({
-  host: connection.host,
-  user: connection.user,
-  password: connection.password,
-  database: connection.database,
-  port: connection.port,
+  host: pool.DB_HOST,
+  user: pool.DB_USER,
+  password: pool.DB_PASSWORD,
+  database: pool.DB_NAME,
+  port: pool.PORT,
 });
 // Connect to the db
 db.connect((err) => {
@@ -205,7 +205,8 @@ app.put("/dashnotes/updateColors/:i", (req, res) => {
 });
 
 // ========================== Start server ============================ //
-const port = connection.port;
+const port = PORT;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+  console.log(pool.DB_HOST);
 });
