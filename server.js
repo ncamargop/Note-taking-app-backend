@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express();l2");
+const app = express();
 const cors = require("cors");
 
 app.use(cors());
