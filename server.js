@@ -1,20 +1,18 @@
-import express from "express";
+const express = require("express");
 const app = express();
-import mysql from "mysql2";
-import cors from "cors";
-import { pool } from "./config.js";
-import { PORT } from "./db.js";
+const mysql = require("mysql2");
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json()); // Parsing for JSON bodies
 
 // Set up MySQL connection
 const db = mysql.createConnection({
-  host: pool.DB_HOST,
-  user: pool.DB_USER,
-  password: pool.DB_PASSWORD,
-  database: pool.DB_NAME,
-  port: pool.PORT,
+  host: "autorack.proxy.rlwy.net",
+  user: "root",
+  password: "RyyClwqLWMvbdfoVBkYIfXyzvUSuBfBl",
+  database: "railway",
+  port: 21109,
 });
 // Connect to the db
 db.connect((err) => {
@@ -205,8 +203,7 @@ app.put("/dashnotes/updateColors/:i", (req, res) => {
 });
 
 // ========================== Start server ============================ //
-const port = PORT;
+const port = 21109;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  console.log(pool.DB_HOST);
 });
