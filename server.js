@@ -1,3 +1,5 @@
+import { connection } from "db.js";
+
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
@@ -8,11 +10,11 @@ app.use(express.json()); // Parsing for JSON bodies
 
 // Set up MySQL connection
 const db = mysql.createConnection({
-  host: "autorack.proxy.rlwy.net",
-  user: "root",
-  password: "RyyClwqLWMvbdfoVBkYIfXyzvUSuBfBl",
-  database: "railway",
-  port: 21109,
+  host: connection.host,
+  user: connection.user,
+  password: connection.password,
+  database: connection.database,
+  port: connection.port,
 });
 // Connect to the db
 db.connect((err) => {
@@ -203,7 +205,7 @@ app.put("/dashnotes/updateColors/:i", (req, res) => {
 });
 
 // ========================== Start server ============================ //
-const port = 3001;
+const port = connection.port;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
