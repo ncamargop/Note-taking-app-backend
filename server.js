@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json()); // Parsing for JSON bodies
@@ -188,7 +189,7 @@ app.put("/dashnotes/updateColors/:i", (req, res) => {
 });
 
 // ========================== Start server ============================ //
-const port = 21109;
+const port = process.env.MYSQLPORT;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
