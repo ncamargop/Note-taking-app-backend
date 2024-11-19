@@ -10,6 +10,7 @@ node_modules/
 # IDE configurations
 .vscode/
 .idea/
+.env
 
 # OS-specific files
 .DS_Store

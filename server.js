@@ -7,21 +7,7 @@ app.use(cors());
 app.use(express.json()); // Parsing for JSON bodies
 
 // Set up MySQL connection
-const db = mysql.createConnection({
-  host: "autorack.proxy.rlwy.net",
-  user: "root",
-  password: "RyyClwqLWMvbdfoVBkYIfXyzvUSuBfBl",
-  database: "railway",
-  port: 21109,
-});
-// Connect to the db
-db.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err);
-  } else {
-    console.log("Connected to the database");
-  }
-});
+const db = require("./config.js"); // Import the database connection
 
 // GET all TODOs
 app.get("/tasks", (req, res) => {
